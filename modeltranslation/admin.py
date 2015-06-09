@@ -81,6 +81,7 @@ class TranslationBaseModelAdmin(BaseModelAdmin):
             # Add localized fieldname css class
             css_classes.append(build_css_class(db_field.name, 'mt-field'))
 
+
             if db_field.language == mt_settings.DEFAULT_LANGUAGE:
                 # Add another css class to identify a default modeltranslation widget
                 css_classes.append('mt-default')
@@ -96,6 +97,8 @@ class TranslationBaseModelAdmin(BaseModelAdmin):
                     if isinstance(field.widget, ClearableWidgetWrapper):
                         field.widget = field.widget.widget
             field.widget.attrs['class'] = ' '.join(css_classes)
+            field.translateable = True
+
 
     def _exclude_original_fields(self, exclude=None):
         if exclude is None:
