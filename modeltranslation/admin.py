@@ -85,6 +85,8 @@ class TranslationBaseModelAdmin(BaseModelAdmin):
             if db_field.language == mt_settings.DEFAULT_LANGUAGE:
                 # Add another css class to identify a default modeltranslation widget
                 css_classes.append('mt-default')
+                # Add Default language attr to field
+                field.default_field = True
                 if (orig_formfield.required or self._orig_was_required.get(
                         '%s.%s' % (orig_field.model._meta, orig_field.name))):
                     # In case the original form field was required, make the
@@ -96,6 +98,7 @@ class TranslationBaseModelAdmin(BaseModelAdmin):
                     # Hide clearable widget for required fields
                     if isinstance(field.widget, ClearableWidgetWrapper):
                         field.widget = field.widget.widget
+
             field.widget.attrs['class'] = ' '.join(css_classes)
             field.translateable = True
 
