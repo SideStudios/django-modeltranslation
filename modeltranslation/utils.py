@@ -42,7 +42,8 @@ def build_localized_fieldname(field_name, lang):
 def _build_localized_verbose_name(verbose_name, lang):
     if lang == 'id':
         lang = 'ind'
-    return force_text('%s [%s]') % (force_text(verbose_name), lang)
+
+    return force_text('%s [%s]') % (force_text(verbose_name), settings.AVAILABLE_LANGUAGES_VERBOSE[lang])
 build_localized_verbose_name = lazy(_build_localized_verbose_name, six.text_type)
 
 

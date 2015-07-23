@@ -87,6 +87,8 @@ class TranslationBaseModelAdmin(BaseModelAdmin):
                 css_classes.append('mt-default')
                 # Add Default language attr to field
                 field.default_field = True
+                field.label = orig_formfield.label
+
                 if (orig_formfield.required or self._orig_was_required.get(
                         '%s.%s' % (orig_field.model._meta, orig_field.name))):
                     # In case the original form field was required, make the

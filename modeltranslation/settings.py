@@ -7,6 +7,8 @@ TRANSLATION_FILES = tuple(getattr(settings, 'MODELTRANSLATION_TRANSLATION_FILES'
 
 AVAILABLE_LANGUAGES = list(getattr(settings, 'MODELTRANSLATION_LANGUAGES',
                                    (l[0] for l in settings.LANGUAGES)))
+AVAILABLE_LANGUAGES_VERBOSE = dict(getattr(settings, 'MODELTRANSLATION_LANGUAGES',
+                                   (l for l in settings.LANGUAGES)))
 DEFAULT_LANGUAGE = getattr(settings, 'MODELTRANSLATION_DEFAULT_LANGUAGE', None)
 if DEFAULT_LANGUAGE and DEFAULT_LANGUAGE not in AVAILABLE_LANGUAGES:
     raise ImproperlyConfigured('MODELTRANSLATION_DEFAULT_LANGUAGE not in LANGUAGES setting.')
